@@ -1,0 +1,36 @@
+.rss-header-div {
+
+	background-color: #4B6C9E;
+}
+.rss-title-input-div {
+	background-color: #3A4F63;
+}
+.welcome-text-div {
+	float: left;
+	margin-left: 20px;
+}
+
+.welcome-text-h {
+	color: #7B8DB9;
+	font-weight: 900;
+}
+
+.url-input-div {
+	color: #7B8DB9;
+	font-weight: 900;
+	float: right;
+	padding-top: 7px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+}
+
+.url-input-text {
+	width: 350px;	
+	height: 20px;
+}
+
+.rss-feeder-header-text {
+	color: #fff;
+	margin-left: 20px;
+	font-weight: 900;
+}
