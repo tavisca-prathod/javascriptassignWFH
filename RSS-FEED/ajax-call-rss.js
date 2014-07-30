@@ -44,10 +44,10 @@ var parseJsonResp = function(resp) {
 	var feedResponse = JSON.parse(resp);
 	var containerDiv = document.getElementById('rss-feed-data-container-div');
 	var feedTitleDiv = document.createElement('div');
-	feedTitleDiv.class = 'row';
+	feedTitleDiv.className = 'row';
 
 	var feedTitleTextDiv = document.createElement('div');
-	feedTitleTextDiv.class = 'col';
+	feedTitleTextDiv.className = 'col';
 
 	var feedTitle = document.createElement('h2');
 	feedTitle.innerHTML = feedResponse.responseData.feed.title;
@@ -55,12 +55,43 @@ var parseJsonResp = function(resp) {
 	feedTitleDiv.appendChild(feedTitleTextDiv);	
 	
 	var feedTitleDescriptionDiv = document.createElement('div');
-	feedTitleDescriptionDiv.class = 'col';
+	feedTitleDescriptionDiv.className = 'col';
 	feedTitleDescriptionDiv.innerHTML = feedResponse.responseData.feed.description;
 	feedTitleDiv.appendChild(feedTitleDescriptionDiv);
 	containerDiv.appendChild(feedTitleDiv);
 
-	for(int feedEntryCount=0; feedEntryCount < feedResponse.responseData.feed.entries.length;feedEntryCount++) {
-		
+	for(var feedEntryCount=0; feedEntryCount < feedResponse.responseData.feed.entries.length;feedEntryCount++) {
+		var entryDiv = document.createElement('div');
+		entryDiv.className = 'row';
+		var titleAndTimeStampDiv = document.createElement('div');
+		titleAndTimeStampDiv.className = 'col col-md-12 col-xs-12 col-lg-12 col-sm-12';
+		var entryTitleDiv = document.createElement('div');
+		var timeStampDiv = document.createElement('div');
+		timeStampDiv.innerHTML = feedResponse.responseData.feed.entries[feedEntryCount].publishedDate;
+		entryTitleDiv.className = 'pull-left';
+		timeStampDiv.className = 'pull-right';
+		var entryTitleLink = document.createElement('a');
+		entryTitleLink.innerHTML = feedResponse.responseData.feed.entries[feedEntryCount].title;
+		entryTitleLink.href = feedResponse.responseData.feed.entries[feedEntryCount].link;
+
+		var entryContent = document.createElement('div');
+		entryContent.className = 'col col-md-12 col-xs-12 col-lg-12 col-sm-12';
+		var contentText = feedResponse.responseData.feed.entries[feedEntryCount].content;
+		contentText = contentText.substring(contentText.indexOf('<'),contentText.substring(contentText.indexOf('>')));
+		entryContent.innerHTML = contentText;
+		var breakLinwOne = document.createElement('br');
+		var breakLinwTwo = document.createElement('br');
+		var breakLinwThree = document.createElement('br');
+		entryContent.appendChild(breakLinwOne);
+		entryContent.appendChild(breakLinwTwo);
+		entryContent.appendChild(breakLinwThree);
+
+		entryTitleDiv.appendChild(entryTitleLink);
+		titleAndTimeStampDiv.appendChild(entryTitleDiv);
+		titleAndTimeStampDiv.appendChild(timeStampDiv);
+		entryDiv.appendChild(titleAndTimeStampDiv);
+		entryDiv.appendChild(entryContent);
+
+		containerDiv.appendChild(entryDiv);
 	}
 }
