@@ -45,7 +45,7 @@ var parseJsonResp = function(resp) {
 	var containerDiv = document.getElementById('rss-feed-data-container-div');
 	var feedTitleDiv = document.createElement('div');
 	feedTitleDiv.className = 'row';
-
+	feedTitleDiv.style.marginLeft = '0px';
 	var feedTitleTextDiv = document.createElement('div');
 	feedTitleTextDiv.className = 'col';
 
@@ -61,10 +61,21 @@ var parseJsonResp = function(resp) {
 	containerDiv.appendChild(feedTitleDiv);
 
 	for(var feedEntryCount=0; feedEntryCount < feedResponse.responseData.feed.entries.length;feedEntryCount++) {
+		var color;
+		if(feedEntryCount%2==0) {
+			color = '#E1E0D4';
+		}
+		else {
+			color = '#D1D0D4';
+		}
+
 		var entryDiv = document.createElement('div');
 		entryDiv.className = 'row';
+		entryDiv.style.backgroundColor = color;
+		entryDiv.style.marginTop = '7px';
 		var titleAndTimeStampDiv = document.createElement('div');
 		titleAndTimeStampDiv.className = 'col col-md-12 col-xs-12 col-lg-12 col-sm-12';
+		titleAndTimeStampDiv.style.marginTop = '8px';
 		var entryTitleDiv = document.createElement('div');
 		var timeStampDiv = document.createElement('div');
 		timeStampDiv.innerHTML = feedResponse.responseData.feed.entries[feedEntryCount].publishedDate;
